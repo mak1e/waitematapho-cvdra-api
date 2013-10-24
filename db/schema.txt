@@ -1,0 +1,583 @@
+# This file is auto-generated from the current state of the database. Instead of editing this file, 
+# please use the migrations feature of Active Record to incrementally modify your database, and
+# then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your database schema. If you need
+# to create the application database on another system, you should be using db:schema:load, not running
+# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended to check this file into your version control system.
+
+ActiveRecord::Schema.define(:version => 113) do
+
+  create_table "access_logs", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "patient_id", :null => false
+    t.integer  "claim_id"
+    t.datetime "created_at", :null => false
+  end
+
+  add_index "access_logs", ["patient_id", "id"], :name => "index_access_logs_on_patient_id_and_id"
+
+  create_table "budgets", :force => true do |t|
+    t.integer "programme_id",                                  :null => false
+    t.integer "organisation_id",                               :null => false
+    t.integer "budget",          :precision => 8, :scale => 0
+  end
+
+  add_index "budgets", ["organisation_id"], :name => "index_budgets_on_organisation_id"
+  add_index "budgets", ["programme_id", "organisation_id"], :name => "index_budgets_on_programme_id_and_organisation_id"
+
+  create_table "care_plus_criterias", :force => true do |t|
+    t.string  "description", :limit => 28,                :null => false
+    t.integer "position",                  :default => 0, :null => false
+  end
+
+  create_table "claim_statuses", :force => true do |t|
+    t.string   "description", :limit => 18, :null => false
+    t.string   "html",        :limit => 48, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "claims", :force => true do |t|
+    t.datetime "invoice_date",                                                                    :null => false
+    t.string   "invoice_no",           :limit => 18
+    t.datetime "date_lodged",                                                                     :null => false
+    t.datetime "date_service",                                                                    :null => false
+    t.integer  "patient_id",                                                                      :null => false
+    t.integer  "programme_id",                                                                    :null => false
+    t.integer  "fee_schedule_id",                                                                 :null => false
+    t.decimal  "amount",                             :precision => 8, :scale => 2
+    t.integer  "organisation_id",                                                                 :null => false
+    t.integer  "host_provider_id"
+    t.integer  "service_provider_id"
+    t.text     "clinical_information"
+    t.string   "comment",              :limit => 78
+    t.integer  "claim_status_id",                                                  :default => 5, :null => false
+    t.integer  "payment_run_id",                                                   :default => 0, :null => false
+    t.integer  "cost_organisation_id",                                                            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "cplus_enrolled"
+    t.integer  "huhc_holder"
+  end
+
+  add_index "claims", ["claim_status_id", "updated_at"], :name => "index_claims_on_claim_status_id_and_updated_at"
+  add_index "claims", ["cost_organisation_id", "invoice_date"], :name => "index_claims_on_cost_organisation_id_and_invoice_date"
+  add_index "claims", ["organisation_id", "invoice_date"], :name => "index_claims_on_organisation_id_and_invoice_date"
+  add_index "claims", ["patient_id", "invoice_date"], :name => "index_claims_on_patient_id_and_invoice_date"
+  add_index "claims", ["payment_run_id", "cost_organisation_id", "programme_id"], :name => "index_claims_on_payment_run_id_and_cost_organisation_id_and_programme_id"
+  add_index "claims", ["payment_run_id", "organisation_id", "programme_id"], :name => "index_claims_on_payment_run_id_and_organisation_id_and_programme_id"
+  add_index "claims", ["payment_run_id", "programme_id"], :name => "index_claims_on_payment_run_id_and_programme_id"
+  add_index "claims", ["programme_id", "date_service"], :name => "index_claims_on_programme_id_and_date_service"
+
+  create_table "claims_data", :force => true do |t|
+    t.integer  "heig_height"
+    t.integer  "weig_weight"
+    t.integer  "bmi_body_mass_index"
+    t.integer  "waist_waist_circumference"
+    t.string   "smok_smoking_history",                              :limit => 20
+    t.string   "diab_type_of_diabetes",                             :limit => 18
+    t.integer  "yodd_year_of_diabetes_diagnosis"
+    t.string   "hoac_history_of_acute_coronary_syndrome",           :limit => 18
+    t.string   "angi_angina_ami",                                   :limit => 18
+    t.string   "ptca_ptca_cabg",                                    :limit => 18
+    t.string   "tia_stroke_tia",                                    :limit => 18
+    t.string   "pvd_peripheral_vessel_disease",                     :limit => 18
+    t.string   "fhcvd_family_history_early_cardiovascular_disease", :limit => 18
+    t.string   "gld_genetic_lipid_disorder",                        :limit => 40
+    t.string   "renal_established_renal_disease",                   :limit => 18
+    t.string   "atfi_atrial_fibrillation",                          :limit => 18
+    t.string   "mets_diagnosed_metabolic_syndrome",                 :limit => 18
+    t.string   "preg_pregnant",                                     :limit => 18
+    t.integer  "sbp_systolic_blood_pressure"
+    t.integer  "dbp_diastolic_blood_pressure"
+    t.integer  "sbpp_systolic_blood_pressure_previous"
+    t.integer  "dbpp_diastolic_blood_pressure_previous"
+    t.decimal  "cvdr_cvd_risk",                                                   :precision => 8, :scale => 2
+    t.decimal  "gluc_fasting_glucose",                                            :precision => 8, :scale => 2
+    t.decimal  "tc_total_cholesterol",                                            :precision => 8, :scale => 2
+    t.decimal  "hdl_hdl_cholesterol",                                             :precision => 8, :scale => 2
+    t.decimal  "ldl_ldl_cholesterol",                                             :precision => 8, :scale => 2
+    t.decimal  "trig_triglyceride",                                               :precision => 8, :scale => 2
+    t.decimal  "tchdl_tc_hdl_ratio",                                              :precision => 8, :scale => 2
+    t.decimal  "creat_serum_creatinine",                                          :precision => 8, :scale => 2
+    t.string   "egfr_glumeral_filtration",                          :limit => 18
+    t.decimal  "acr_urine_albumin_to_creatine_ratio",                             :precision => 8, :scale => 2
+    t.string   "dsma_dipstick_test_for_microalbuminuria",           :limit => 18
+    t.string   "apst_albumin_protein_stick_test",                   :limit => 18
+    t.decimal  "hba1c_hba1c",                                                     :precision => 8, :scale => 2
+    t.datetime "retind_date_last_retinal_screening"
+    t.string   "retini_retinal_screening_interval",                 :limit => 18
+    t.string   "aspi_aspirin",                                      :limit => 18
+    t.string   "clop_clopidogrel",                                  :limit => 18
+    t.string   "warf_warfarin",                                     :limit => 18
+    t.string   "acei_ace_inhibitor",                                :limit => 18
+    t.string   "a2ra_a2_receptor_antagonist",                       :limit => 18
+    t.string   "beta_beta_blocker",                                 :limit => 18
+    t.string   "thia_thiazide",                                     :limit => 18
+    t.string   "caan_calcium_antagonist",                           :limit => 18
+    t.string   "oahm_other_anti_hypertensive_medication",           :limit => 18
+    t.string   "statin_statin",                                     :limit => 18
+    t.string   "fibra_fibrate",                                     :limit => 18
+    t.string   "ollm_other_lipid_lowering_medication",              :limit => 18
+    t.string   "nirt_nicotine_replacement_therapy",                 :limit => 18
+    t.string   "lifet_lifestyle_therapy",                           :limit => 18
+    t.string   "green_green_prescription",                          :limit => 18
+    t.string   "insu_insulin",                                      :limit => 18
+    t.string   "metf_metformin",                                    :limit => 18
+    t.string   "sulp_sulphonylurea",                                :limit => 18
+    t.string   "glit_glitazone",                                    :limit => 18
+    t.string   "acar_acarbose",                                     :limit => 18
+    t.string   "eyer_eye_referral_today",                           :limit => 18
+    t.string   "vacl_visual_acuity_left",                           :limit => 18
+    t.string   "vacr_visual_acuity_right",                          :limit => 18
+    t.string   "retwe_retinopathy_worst_eye",                       :limit => 18
+    t.string   "macwe_maculopathy_worst_eye",                       :limit => 18
+    t.string   "feets_feet_sensation",                              :limit => 18
+    t.string   "feetc_feet_circulation",                            :limit => 18
+    t.string   "hdfu_history_diabetic_foot_ulcer",                  :limit => 18
+    t.string   "cdfu_current_diabetic_foot_ulcer",                  :limit => 18
+    t.string   "ohrf_other_criteria_for_high_risk_foot",            :limit => 18
+    t.string   "plla_previous_diabetic_lower_limb_amputation",      :limit => 18
+    t.string   "hypoa_hypoglycaemic_attacks",                       :limit => 18
+    t.string   "bgsm_blood_glucose_self_monitoring",                :limit => 18
+    t.string   "refto_Referral_To",                                 :limit => 18
+    t.string   "exahos_exacarbation_hospital_admit",                :limit => 18
+    t.string   "exaevi_exacarbation_emergency_visit",               :limit => 18
+    t.string   "exaost_exacarbation_oral_steriod",                  :limit => 18
+    t.string   "inhtec_inhaler_technique",                          :limit => 18
+    t.string   "medcon_medical_concordance",                        :limit => 18
+    t.string   "symnig_symptoms_night",                             :limit => 18
+    t.string   "symday_symptoms_day",                               :limit => 18
+    t.string   "actlim_activity_limitations",                       :limit => 18
+    t.string   "actplan_action_plan",                               :limit => 18
+    t.string   "saba_short_acting_bronchodilator",                  :limit => 36
+    t.string   "sabause_short_acting_ba_usage",                     :limit => 18
+    t.string   "ics_inhaled_corticosteroid",                        :limit => 36
+    t.string   "laba_long_acting_bronchodilator",                   :limit => 36
+    t.string   "pfmeter_peak_flow_meter",                           :limit => 18
+    t.string   "a3lm_asthma_3rd_line_medication",                   :limit => 36
+    t.integer  "pefr_peak_expiratory_flow_rate"
+    t.integer  "pefrpb_pefr_post_bronchodilator"
+    t.integer  "pefrpbip_pefr_post_bronch_improve_per"
+    t.integer  "pefrhig_pefr_highest"
+    t.integer  "pefrlow_pefr_lowest"
+    t.integer  "pefrvar_pefr_variability"
+    t.integer  "pefrpred_pefr_predicted"
+    t.integer  "pefrppred_pefr_percentage_predicted"
+    t.decimal  "fev1_forced_expiratory_volume",                                   :precision => 8, :scale => 2
+    t.decimal  "fev1pred_fev1_predicted",                                         :precision => 8, :scale => 2
+    t.integer  "fev1ppred_fev1_percentage_predicted"
+    t.decimal  "fvc_forced_vital_capacity",                                       :precision => 8, :scale => 2
+    t.integer  "fev1fvcr_fev1_fvc_ratio"
+    t.integer  "agea_age_of_asthma_diagnosis"
+    t.integer  "smpy_smoking_pack_years"
+    t.decimal  "fvcpred_fvc_predicted",                                           :precision => 8, :scale => 2
+    t.integer  "fvcppred_fvc_percentage_predicted"
+    t.string   "chqin_child_heath_q_interpretation",                :limit => 28
+    t.string   "chqre_child_heath_q_referral",                      :limit => 28
+    t.string   "chqres_child_heath_q_referral_status",              :limit => 18
+    t.string   "imm4ud_4y_immunisation_up_to_date",                 :limit => 18
+    t.string   "immvt_immunisation_vacc_today",                     :limit => 18
+    t.string   "immre_immunisation_referral",                       :limit => 28
+    t.string   "immres_immunisation_referral_status",               :limit => 18
+    t.string   "growin_growth_measure_interpretation",              :limit => 28
+    t.string   "growre_growth_measure_referral",                    :limit => 28
+    t.string   "growres_growth_measure_referral_status",            :limit => 18
+    t.string   "dentde_dental_decay",                               :limit => 18
+    t.string   "denten_dental_enrolled",                            :limit => 18
+    t.string   "dentent_dental_enrolled_today",                     :limit => 18
+    t.string   "dentin_dental_interpretation",                      :limit => 28
+    t.string   "dentre_dental_referral",                            :limit => 28
+    t.string   "dentres_dental_referral_status",                    :limit => 18
+    t.string   "vishs_vision_hearing_status",                       :limit => 18
+    t.string   "vishr_vision_hearing_referral",                     :limit => 28
+    t.string   "vishrs_vision_hearing_referral_status",             :limit => 18
+    t.integer  "pedsss_peds_significant_score"
+    t.integer  "pedsns_peds_non_significant_score"
+    t.string   "pedsin_peds_interpretation",                        :limit => 28
+    t.string   "pedsref_peds_referral",                             :limit => 28
+    t.string   "pedsrefs_peds_referral_status",                     :limit => 18
+    t.integer  "sdqess_sdq_emotional_symptoms_score"
+    t.integer  "sdqcps_sdq_conduct_problems_score"
+    t.integer  "sdqhys_sdq_hyperactivity_score"
+    t.integer  "sdqpps_sdq_peer_problems_score"
+    t.integer  "sdqtds_sdq_total_difficulties_score"
+    t.integer  "sdqpbs_sdq_prosocial_behaviour_score"
+    t.string   "sdqin_sdq_interpretation",                          :limit => 28
+    t.string   "sdqref_sdq_referral",                               :limit => 28
+    t.string   "sdqrefs_sdq_referral_status",                       :limit => 18
+    t.string   "pedsref2_peds_referral_2",                          :limit => 28
+    t.string   "pedsref2s_peds_referral_2_status",                  :limit => 18
+    t.string   "sdqref2_sdq_referral_2",                            :limit => 28
+    t.string   "sdqref2s_sdq_referral_2_status",                    :limit => 18
+    t.string   "nokrel_nok_relationship",                           :limit => 18
+    t.string   "nokgn_nok_given_names",                             :limit => 18
+    t.string   "nokfn_nok_family_name",                             :limit => 18
+    t.string   "notes_notes",                                       :limit => 28
+    t.string   "mhdx_mhealth_diagnosis",                            :limit => 18
+    t.string   "mhdx2_mhealth_diagnosis_2",                         :limit => 18
+    t.string   "mhdx3_mhealth_diagnosis_3",                         :limit => 18
+    t.string   "como_co_morbidities",                               :limit => 36
+    t.string   "qolr_quality_of_life_rating",                       :limit => 5
+    t.decimal  "copa_co_payment_amount",                                          :precision => 8, :scale => 2
+    t.string   "oorm_other_oral_medication",                        :limit => 18
+    t.string   "omed_other_medication",                             :limit => 18
+    t.string   "pctd_positive_changes_to_diet",                     :limit => 18
+    t.string   "pcte_positive_changes_to_excercise",                :limit => 18
+    t.string   "slty_skin_lesion_type",                             :limit => 18
+    t.string   "sllo_skin_lesion_location",                         :limit => 38
+    t.string   "slex_skin_lesion_excision",                         :limit => 18
+    t.string   "cpet_care_plus_enrolment_type",                     :limit => 18
+    t.boolean  "vhsr_visit_health_status_reviewed"
+    t.boolean  "vcpr_visit_care_plan_reviewed"
+    t.boolean  "vcpr_visit_crisis_plan_reviewed"
+    t.boolean  "vped_visit_patient_education"
+    t.boolean  "vrxr_visit_medication_review"
+    t.boolean  "vpgr_visit_patient_goals_reviewed"
+    t.string   "cpdr_care_plus_disenrolment_reason",                :limit => 28
+    t.boolean  "mhaod_mhealth_contract_alcohol_other_drug"
+    t.boolean  "mhmoh_mhealth_contract_ministry_of_health"
+    t.boolean  "mhmsd_mhealth_contract_ministry_of_social_dev"
+    t.string   "mhapt_mhealth_appointment_type",                    :limit => 18
+    t.string   "refft_referral_from_type",                          :limit => 18
+    t.string   "reffn_referral_from_name",                          :limit => 18
+    t.datetime "refda_date_of_referral"
+    t.string   "mhatt_mhealth_attendance_type",                     :limit => 18
+    t.string   "mhost_mhealth_one_off_session_type",                :limit => 18
+    t.string   "reftt_referral_to_type",                            :limit => 28
+    t.string   "reftn_referral_to_name",                            :limit => 18
+    t.string   "refto_referral_to_other",                           :limit => 18
+    t.string   "mhsty_mhealth_session_type",                        :limit => 18
+    t.string   "mhk10_mhealth_kessler_10",                          :limit => 4
+    t.boolean  "mhkde_mhealth_kessler_10_declined"
+    t.string   "comor_co_morbidities_read",                         :limit => 8
+    t.string   "comor2_co_morbidities_read_2",                      :limit => 8
+    t.string   "btwc_barriers_to_work_code",                        :limit => 4
+    t.string   "btwc2_barriers_to_work_code_2",                     :limit => 4
+    t.string   "btwc3_barriers_to_work_code_3",                     :limit => 4
+    t.string   "btwc4_barriers_to_work_code_4",                     :limit => 4
+    t.string   "mhex_mhealth_exit_reason",                          :limit => 28
+    t.string   "taoby_taxi_ordered_by",                             :limit => 18
+    t.string   "tapos_taxi_position",                               :limit => 18
+    t.string   "tapur_taxi_purpose",                                :limit => 28
+    t.string   "tapuo_taxi_purpose_other",                          :limit => 18
+    t.boolean  "coora_contraception_oral"
+    t.boolean  "coecp_contraception_ecp"
+    t.boolean  "codep_contraception_depo_provera"
+    t.boolean  "coiucd_contraception_iucd"
+    t.boolean  "cocon_contraception_condom"
+    t.boolean  "codia_contraception_diaphragm"
+    t.boolean  "cooth_contraception_other"
+    t.boolean  "stichl_sti_chlamydia"
+    t.boolean  "stihpv_sti_hpv_warts"
+    t.boolean  "stihsv_sti_hsv_herpes"
+    t.boolean  "stigon_sti_gonorrhoea"
+    t.boolean  "stinsu_sti_nsu"
+    t.boolean  "stioth_sti_other"
+    t.boolean  "shoadv_shealth_advice"
+    t.boolean  "shopgt_shealth_pregnancy_test"
+    t.boolean  "shotop_shealth_top_referral"
+    t.boolean  "shooth_shealth_other"
+    t.string   "hcra_hcheck_referring_agency",                      :limit => 28
+    t.boolean  "canex_nutrition_exercise"
+    t.boolean  "casmk_smoking"
+    t.boolean  "cacvdr_cvd_risk"
+    t.boolean  "cadiab_diabetes_management"
+    t.boolean  "cabre_breast_health"
+    t.boolean  "cacxs_cervical_screening"
+    t.boolean  "casxh_sexual_health"
+    t.boolean  "caalc_alcohol_consumption"
+    t.boolean  "caohn_other_heath_need"
+    t.string   "cond_condition",                                    :limit => 28
+    t.string   "conr_condition_read",                               :limit => 8
+    t.datetime "dod_date_of_death"
+    t.boolean  "camedi_medications"
+    t.string   "mhphq9_mhealth_phq_9",                              :limit => 2
+    t.string   "mhdx4_mhealth_diagnosis_4",                         :limit => 18
+    t.string   "mhdx5_mhealth_diagnosis_5",                         :limit => 18
+    t.string   "mhdx6_mhealth_diagnosis_6",                         :limit => 18
+    t.boolean  "canut_nutrition"
+    t.datetime "chqred_child_heath_q_referral_date"
+    t.datetime "immred_immunisation_referral_date"
+    t.datetime "growred_growth_measure_referral_date"
+    t.datetime "dentred_dental_referral_date"
+    t.datetime "vishrd_vision_hearing_referral_date"
+    t.datetime "pedsrefd_peds_referral_date"
+    t.datetime "sdqrefd_sdq_referral_date"
+    t.datetime "pedsref2d_peds_referral_2_date"
+    t.datetime "sdqref2d_sdq_referral_2_date"
+    t.string   "smready_smoking_readiness_quit",                    :limit => 32
+    t.string   "smhou_smoking_household",                           :limit => 32
+    t.string   "smref_smoking_action_referral",                     :limit => 32
+    t.string   "smpatrx_smoking_patch_rx",                          :limit => 18
+    t.string   "smgumrx_smoking_gum_rx",                            :limit => 18
+    t.string   "smothrx_smoking_other_rx",                          :limit => 28
+    t.string   "smquit_smoking_quit_status",                        :limit => 32
+    t.integer  "diabscm_diabetes_self_care_measure"
+    t.integer  "supatt_support_person_attending"
+    t.integer  "ndxdiab_newly_dx_diabetes"
+    t.string   "hovi_home_visit",                                   :limit => 8
+    t.string   "rtow_return_to_work",                               :limit => 18
+    t.string   "prov_providers_name",                               :limit => 18
+    t.integer  "nosess_number_of_sessions"
+    t.string   "sdqtc_sdq_t_completed",                             :limit => 18
+    t.string   "nokst_nok_street",                                  :limit => 30
+    t.string   "noksu_nok_suburb",                                  :limit => 20
+    t.string   "noksu_nok_city",                                    :limit => 20
+    t.string   "nokph_nok_phone",                                   :limit => 14
+    t.string   "nokce_nok_cell_phone",                              :limit => 14
+    t.string   "sdqtcec_sqd_t_ece",                                 :limit => 28
+    t.string   "smoc_smoking_outcome",                              :limit => 32
+  end
+
+  create_table "data_fields", :force => true do |t|
+    t.string  "column_name", :limit => 50,  :null => false
+    t.string  "label",       :limit => 50,  :null => false
+    t.string  "data_type",   :limit => 8,   :null => false
+    t.integer "limit"
+    t.string  "choices",     :limit => 200
+  end
+
+  add_index "data_fields", ["column_name"], :name => "index_data_fields_on_column_name"
+
+  create_table "dhbs", :force => true do |t|
+    t.string   "name",       :limit => 18, :null => false
+    t.integer  "position",                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ethnicities", :force => true do |t|
+    t.string   "description",         :limit => 35, :null => false
+    t.integer  "level1_ethnicity_id",               :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ethnicity_diab",      :limit => 35
+    t.integer  "order_by_diab"
+    t.string   "ethnicity_cvdr",      :limit => 35
+    t.integer  "order_by_cvdr"
+  end
+
+  create_table "fee_schedules", :force => true do |t|
+    t.integer  "programme_id",                                                                          :null => false
+    t.string   "code",                   :limit => 8,                                                   :null => false
+    t.string   "description",            :limit => 38,                                                  :null => false
+    t.decimal  "fee",                                  :precision => 8, :scale => 2
+    t.string   "detail",                 :limit => 78
+    t.string   "gl_account_no",          :limit => 8
+    t.boolean  "is_the_default",                                                     :default => false, :null => false
+    t.boolean  "deleted",                                                            :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "on_hold",                                                            :default => false, :null => false
+    t.integer  "on_new_claim_status_id"
+    t.string   "on_new_claim_comment",   :limit => 18
+    t.integer  "is_a_entry_service",                                                 :default => 1
+    t.integer  "is_a_exit_service",                                                  :default => 1
+    t.integer  "is_a_practice_service",                                              :default => 1
+    t.integer  "is_a_declined_service",                                              :default => 0,     :null => false
+    t.integer  "is_a_dnr_service",                                                   :default => 0,     :null => false
+    t.boolean  "reminder_on",                                                        :default => false, :null => false
+    t.integer  "reminder_in_weeks"
+    t.string   "reminder_note",          :limit => 78
+  end
+
+  add_index "fee_schedules", ["programme_id"], :name => "index_fee_schedules_on_programme_id"
+
+  create_table "genders", :force => true do |t|
+    t.string   "description", :limit => 13, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "level1_ethnicities", :force => true do |t|
+    t.string   "description", :limit => 18, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organisations", :force => true do |t|
+    t.string   "name",                   :limit => 40,                    :null => false
+    t.integer  "pho_id"
+    t.string   "residential_street",     :limit => 45
+    t.string   "residential_suburb",     :limit => 30
+    t.string   "residential_city",       :limit => 30
+    t.string   "postal_street",          :limit => 45
+    t.string   "postal_suburb",          :limit => 30
+    t.string   "postal_city",            :limit => 30
+    t.string   "postal_post_code",       :limit => 10
+    t.string   "phone",                  :limit => 14
+    t.string   "fax",                    :limit => 14
+    t.string   "hlink",                  :limit => 8
+    t.string   "per_org_id",             :limit => 8
+    t.string   "bank_ac_no",             :limit => 20
+    t.string   "gst_no",                 :limit => 10
+    t.string   "comment",                :limit => 78
+    t.integer  "est_no_patients"
+    t.boolean  "deleted",                              :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "cbf_ident",              :limit => 16
+    t.string   "contact_name",           :limit => 18
+    t.integer  "on_new_claim_status_id"
+    t.string   "on_new_claim_comment",   :limit => 18
+    t.boolean  "show_names",                           :default => false, :null => false
+    t.boolean  "not_gst_registered",                   :default => false, :null => false
+  end
+
+  create_table "patients", :force => true do |t|
+    t.string   "nhi_no",                  :limit => 7
+    t.string   "family_name",             :limit => 40,                    :null => false
+    t.string   "given_names",             :limit => 40
+    t.datetime "date_of_birth"
+    t.string   "gender_id",               :limit => 1
+    t.integer  "ethnicity_id"
+    t.integer  "quintile"
+    t.string   "dhb_id",                  :limit => 3
+    t.string   "comment",                 :limit => 78
+    t.boolean  "deleted",                               :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "organisation_id"
+    t.integer  "is_care_plus",                          :default => 0,     :null => false
+    t.integer  "care_plus_criteria_id"
+    t.integer  "care_plus_criteria_2_id"
+    t.integer  "care_plus_criteria_3_id"
+    t.integer  "care_plus_criteria_4_id"
+    t.string   "care_plus_condition",     :limit => 18
+    t.string   "care_plus_condition_2",   :limit => 18
+    t.string   "care_plus_condition_3",   :limit => 18
+    t.string   "care_plus_condition_4",   :limit => 18
+    t.integer  "ethnicity_2_id"
+    t.integer  "ethnicity_3_id"
+    t.integer  "is_huhc_holder"
+    t.string   "street",                  :limit => 45
+    t.string   "suburb",                  :limit => 30
+    t.string   "city",                    :limit => 30
+    t.string   "post_code",               :limit => 10
+    t.string   "phone",                   :limit => 14
+  end
+
+  add_index "patients", ["family_name"], :name => "index_patients_on_family_name"
+  add_index "patients", ["nhi_no"], :name => "index_patients_on_nhi_no"
+
+  create_table "payment_runs", :force => true do |t|
+    t.datetime "cut_off_date",               :null => false
+    t.datetime "payment_date"
+    t.integer  "user_id",                    :null => false
+    t.integer  "programme_id",               :null => false
+    t.string   "note",         :limit => 18
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "phos", :force => true do |t|
+    t.string   "name",            :limit => 40,                    :null => false
+    t.string   "dhb_id",          :limit => 3,                     :null => false
+    t.integer  "est_no_patients"
+    t.boolean  "deleted",                       :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "programme_elements", :force => true do |t|
+    t.integer "programme_id",                              :null => false
+    t.integer "position",                   :default => 0, :null => false
+    t.string  "column_name",  :limit => 50
+  end
+
+  add_index "programme_elements", ["programme_id", "position"], :name => "index_programme_elements_on_programme_id_and_position"
+
+  create_table "programmes", :force => true do |t|
+    t.string   "code",                  :limit => 8,                                                   :null => false
+    t.string   "description",           :limit => 38,                                                  :null => false
+    t.boolean  "deleted",                                                           :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "commit_episode",                      :precision => 8, :scale => 2
+    t.datetime "budget_start"
+    t.string   "budget_method",         :limit => 1
+    t.string   "budget_wording",        :limit => 18
+    t.string   "budget_details",        :limit => 78
+    t.boolean  "budget_internal_only"
+    t.boolean  "detail_payments_other"
+    t.boolean  "internal_only",                                                     :default => false, :null => false
+    t.boolean  "reminder_on",                                                       :default => false, :null => false
+  end
+
+  create_table "provider_types", :force => true do |t|
+    t.string  "description", :limit => 18,                :null => false
+    t.integer "position",                  :default => 0, :null => false
+  end
+
+  create_table "providers", :force => true do |t|
+    t.string   "registration_no",  :limit => 8,                     :null => false
+    t.string   "name",             :limit => 40,                    :null => false
+    t.integer  "organisation_id",                                   :null => false
+    t.string   "external_ident",   :limit => 18
+    t.string   "bank_ac_no",       :limit => 20
+    t.string   "gst_no",           :limit => 10
+    t.boolean  "deleted",                        :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "provider_type_id"
+    t.boolean  "seperate_payment"
+    t.string   "cbf_ident",        :limit => 16
+  end
+
+  create_table "registries", :force => true do |t|
+    t.string  "section", :limit => 18, :null => false
+    t.string  "ident",   :limit => 18, :null => false
+    t.text    "value"
+    t.integer "user_id"
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "settings", :force => true do |t|
+    t.string   "name",               :limit => 40, :null => false
+    t.string   "dhb_id",             :limit => 3
+    t.string   "residential_street", :limit => 45
+    t.string   "residential_suburb", :limit => 30
+    t.string   "residential_city",   :limit => 30
+    t.string   "postal_street",      :limit => 45
+    t.string   "postal_suburb",      :limit => 30
+    t.string   "postal_city",        :limit => 30
+    t.string   "postal_post_code",   :limit => 10
+    t.string   "phone",              :limit => 14
+    t.string   "fax",                :limit => 14
+    t.string   "hlink",              :limit => 8
+    t.string   "bank_ac_no",         :limit => 20
+    t.string   "gst_no",             :limit => 10
+    t.string   "advice_message",     :limit => 78
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "hlink_importer_url", :limit => 78
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username",                :limit => 18,                    :null => false
+    t.string   "password_salt",           :limit => 8,                     :null => false
+    t.string   "password_hash",           :limit => 64,                    :null => false
+    t.boolean  "role_system_admin",                     :default => false, :null => false
+    t.boolean  "role_claims_admin",                     :default => false, :null => false
+    t.boolean  "role_claims_processing",                :default => false, :null => false
+    t.boolean  "role_payment_processing",               :default => false, :null => false
+    t.datetime "last_login_at"
+    t.boolean  "deleted",                               :default => false, :null => false
+    t.boolean  "show_name_address_csv",                 :default => false, :null => false
+  end
+
+end

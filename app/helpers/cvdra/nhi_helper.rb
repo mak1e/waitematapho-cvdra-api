@@ -1,0 +1,2 @@
+module Cvdra::NhiHelper
+end

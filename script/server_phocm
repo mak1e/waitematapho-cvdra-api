@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/boot'
+ActionController::AbstractRequest.relative_url_root = "/phocm"
+require 'commands/server'
+

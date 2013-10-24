@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+<script src="prototype.js" type="text/javascript"></script>
+<script src="effects.js" type="text/javascript"></script>
+<script src="dragdrop.js" type="text/javascript"></script>
+<script src="controls.js" type="text/javascript"></script>
+<script src="application.js" type="text/javascript"></script>  
+  
+<script language="JavaScript" type="text/javascript" >
+<!--
+function options_replace(select_id,options_array)
+{
+  elem = $(select_id);
+  options = elem.options;
+  options.length = 1;
+  for (var i=0;i<options_array.length;i++ ) {
+    alert(options_array[i][0]);
+    options[options.length] = new Option(options_array[i][0], options_array[i][1]);
+  }
+  if (options.length == 1) {
+    elem.hide();
+  } else {
+    elem.show();
+  }
+}
+
+
+
+// -->
+
+</script>
+  </head>
+  <body>
+  <select id="claim_program_id" name="claim[program_id]"><option value=""></option>
+<option value="1">Care Plus</option>
+<option value="2">Cardio Vascular Disease</option>
+<option value="3">Diabetes</option>
+<option value="4">Asthma</option>
+<option value="5">Test Programme</option></select>
+<a href="javascript:options_replace('claim_program_id',[['1','CP'],['2','TWO']]);void 0;">CLICK</a>
+  </body>
+</html>

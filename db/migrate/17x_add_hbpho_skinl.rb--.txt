@@ -1,0 +1,159 @@
+class WrphoAddSmokFields < ActiveRecord::Migration
+  def self.up
+
+  # if ( Settings.database =~ /phocm_hbpho/ )
+  
+    add_column :claims_data, :data_element, :string, :limit => 48
+    add_column :claims_data, :data_element, :string, :limit => 48
+
+    add_column :claims_data, :data_element, :boolean
+    add_column :claims_data, :data_element, :boolean
+    
+     
+    ClaimsData.reset_column_information
+    DataField.populate_table
+
+    choices = [
+      ['typeOfConsultation', 
+         "Initial\r\nFollow Up"],
+         
+      ['methodOfConsultation', 
+         "Face to Face\r\nPhone"],
+
+      ['occur_diag09', 
+         "Initial\r\nRecurrent"]
+
+         ]
+         
+    choices.each do |choice|
+        df=DataField.find_by_column_name(choice[0]);
+        raise ArgumentError, "Data field not found '#{choice[0]}'"  if !df
+        df.choices = choice[1];
+        df.save!
+    end
+
+    if ( Settings.database =~ /wrpho|phocm_wrpho/ )
+      #puts "HBPHO - Sexual Health"
+      
+      #Programme.create_with_id 34, :code => 'SH', :description => 'Sexual Health'
+      
+      #FeeSchedule.create_with_id 3400, :programme_id => 34, :code => 'SHCCON', :description => 'SH CLaim Consultation', :fee => null, :gl_account_no => '6391-84',:is_the_default => true,
+       #   :is_a_entry_service => 1, :is_a_exit_service => 0, :is_a_practice_service => 1,
+       #   :is_a_declined_service => 0, :is_a_dnr_service => 0
+          
+      ProgrammeElement.populate(34, [
+          { :position => 0,  :column_name => 'smstatus'},
+          { :position => 1,  :column_name => 'attemptDate'},
+          { :position => 2,  :column_name => 'cpd'},
+
+          { :position => 4,  :column_name => 'cbPregnant'}, 
+          { :position => 5,  :column_name => 'briefAdvice'}, 
+          { :position => 6,  :column_name => 'csmeds'}, 
+          #{ :position => 7,  :column_name => ''}, 
+
+          { :position => 8,  :column_name => 'nrt1'}, 
+          { :position => 9,  :column_name => 'nrt2'}, 
+          { :position => 10,  :column_name => 'nrt3'}, 
+          { :position => 11,  :column_name => 'nrt4'}, 
+           
+         { :position => 12,  :column_name => 'nrt5'}, 
+         { :position => 13,  :column_name => 'nrt6'}, 
+         # { :position => 14,  :column_name => ''}, 
+         # { :position => 15,  :column_name => ''}, 
+           
+         { :position => 16,  :column_name => 'csrf'}, 
+         { :position => 17,  :column_name => 'csbs'}, 
+         { :position => 18,  :column_name => 'csdec'}, 
+        #{ :position => 19,  :column_name => ''}, 
+           
+         { :position => 20,  :column_name => 'cbDiscretion'}, 
+
+
+        ]);
+        
+    end
+
+  end
+
+  def self.down
+    
+    remove_column :claims_data, :typeOfConsultation
+    remove_column :claims_data, :providerType
+    remove_column :claims_data, :methodOfConsultation
+
+    remove_column :claims_data, :reasonForConsultationA
+    remove_column :claims_data, :reasonForConsultationS
+    remove_column :claims_data, :reasonForConsultationC
+    remove_column :claims_data, :reasonForConsultationO
+
+    remove_column :claims_data, :referral
+    remove_column :claims_data, :confirmClaim
+
+    remove_column :claims_data, :contraceptionPrescribedC
+    remove_column :claims_data, :contraceptionPrescribedE
+    remove_column :claims_data, :contraceptionPrescribedO
+    remove_column :claims_data, :contraceptionPrescribedI
+    remove_column :claims_data, :contraceptionPrescribedJ
+    remove_column :claims_data, :contraceptionPrescribedR
+    remove_column :claims_data, :contraceptionPrescribedD
+    remove_column :claims_data, :contraceptionPrescribedM
+
+    remove_column :claims_data, :previousSTI
+
+    remove_column :claims_data, :diagnosticTestingB
+    remove_column :claims_data, :diagnosticTestingS
+    remove_column :claims_data, :diagnosticTestingG
+    remove_column :claims_data, :diagnosticTestingD
+    remove_column :claims_data, :diagnosticTestingN
+
+    remove_column :claims_data, :testPositive
+    remove_column :claims_data, :contactTracingCompleted
+    remove_column :claims_data, :partnerManagementDiscussed
+    remove_column :claims_data, :patientCompliantWithTreatment
+    remove_column :claims_data, :didPatientAdvisePartner
+    
+    remove_column :claims_data, :site_diag01
+    remove_column :claims_data, :site_diag02
+    remove_column :claims_data, :site_diag03
+    remove_column :claims_data, :site_diag04
+    remove_column :claims_data, :site_diag05
+    remove_column :claims_data, :site_diag06
+    remove_column :claims_data, :site_diag07
+    remove_column :claims_data, :site_diag08
+    remove_column :claims_data, :site_diag09
+
+    remove_column :claims_data, :occur_diag01
+    remove_column :claims_data, :occur_diag02
+    remove_column :claims_data, :occur_diag03
+    remove_column :claims_data, :occur_diag04
+    remove_column :claims_data, :occur_diag05
+    remove_column :claims_data, :occur_diag06
+    remove_column :claims_data, :occur_diag07
+    remove_column :claims_data, :occur_diag08
+    remove_column :claims_data, :occur_diag09
+
+    remove_column :claims_data, :cbProv_diag01Y
+    remove_column :claims_data, :cbProv_diag02Y
+    remove_column :claims_data, :cbProv_diag03Y
+    remove_column :claims_data, :cbProv_diag04Y
+    remove_column :claims_data, :cbProv_diag05Y
+    remove_column :claims_data, :cbProv_diag06Y
+    remove_column :claims_data, :cbProv_diag07Y
+    remove_column :claims_data, :cbProv_diag08Y
+    remove_column :claims_data, :cbProv_diag09Y
+
+    remove_column :claims_data, :cbConf_diag01Y
+    remove_column :claims_data, :cbConf_diag02Y
+    remove_column :claims_data, :cbConf_diag03Y
+    remove_column :claims_data, :cbConf_diag04Y
+    remove_column :claims_data, :cbConf_diag05Y
+    remove_column :claims_data, :cbConf_diag06Y
+    remove_column :claims_data, :cbConf_diag07Y
+    remove_column :claims_data, :cbConf_diag08Y
+    remove_column :claims_data, :cbConf_diag09Y
+
+#    Programme.delete_all( 'id = 34' )
+#    FeeSchedule.delete_all( 'programme_id = 34' )
+
+  end
+end

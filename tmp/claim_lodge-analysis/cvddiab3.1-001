@@ -1,0 +1,346 @@
+
+Processing ClaimController#lodge (for 127.0.0.1 at 2013-06-14 13:52:13) [POST]
+  Session ID: 2784716480e85e09de8ce5af00b543d6
+  Parameters: {"action"=>"lodge", "post"=>{"patient"=>{"care_plus_criteria"=>"5", "quintile"=>"1", "is_care_plus"=>"1", "cplus_cplus_enrolled"=>"Yes", "ethnicity"=>"21", "is_huhc_holder"=>"0", "external_id"=>"X007642", "gender"=>"M"
+, "nhi_no"=>"XXX0000", "ethnicity_2"=>"99", "ethnicity_3"=>"99", "date_of_birth"=>"1946-12-03"}, "service_provider"=>{"name"=>"NURSE DICK", "registration_no"=>"059070", "registration_body"=>"NZNC"}, "claim"=>{"date_service"=>"2013-0
+6-01", "invoice_date"=>"2013-06-01", "invoice_no"=>"0001", "programme_code"=>"DIAB", "fee_schedule_code"=>"DIAFCP"}, "elems"=>[{"code"=>"formID", "value"=>"cvdndiab31"}, {"code"=>"prev_cvd_risk", "value"=>"21"}, {"code"=>"prev_cvd_r
+isk_date", "value"=>"27/11/2012"}, {"code"=>"smok_smoking_history", "value"=>"Past"}, {"code"=>"NEW_fhdiab_family_history_type_2_diabetes", "value"=>"Yes"}, {"code"=>"diab_type_of_diabetes", "value"=>"Type 2"}, {"code"=>"sbpp_systol
+ic_blood_pressure_previous", "value"=>"126"}, {"code"=>"dbpp_diastolic_blood_pressure_previous", "value"=>"80"}, {"code"=>"sbp_systolic_blood_pressure", "value"=>"130"}, {"code"=>"dbp_diastolic_blood_pressure", "value"=>"75"}, {"cod
+e"=>"dabp_date_blood_pressure", "value"=>"13-12-2012"}, {"code"=>"heig_height", "value"=>"177"}, {"code"=>"bmi_body_mass_index", "value"=>"45"}, {"code"=>"weig_weight", "value"=>"140"}, {"code"=>"tchdl_tc_hdl_ratio", "value"=>"4.6"}
+, {"code"=>"hba1c_hba1c", "value"=>"68"}, {"code"=>"renal_established_renal_disease", "value"=>"Non diabetic nephropathy"}, {"code"=>"yodd_year_of_diabetes_diagnosis", "value"=>"2005"}, {"code"=>"retind_date_last_retinal_screening",
+ "value"=>"2011"}, {"code"=>"podr_podiatry_referral_today", "value"=>"Yes"}, {"code"=>"cvdr_cvd_risk_text", "value"=>"Clinically > 20%"}, {"code"=>"cvdr_cvd_risk", "value"=>"99"}, {"code"=>"cvdrr_cvd_risk_raised", "value"=>"99"}, {"
+code"=>"notes_free_notes", "value"=>"declines weight today - -\r\nmeter downloaded - dec readings show no levels over 12 - this is good compared to nov with readings of 16-18-\r\nwill continue to try and controll his diet - \r\nadd
+metformin 1 midday - cannot tolerate 2 tabs together -\r\n see in 1/12 for review-\r\n plse check previous pod. referral - present clinic unable to continue his care"}, {"code"=>"sulp_sulphonylurea", "value"=>"Yes"}, {"code"=>"metf_
+metformin", "value"=>"Yes"}, {"code"=>"statin_statin", "value"=>"Yes"}, {"code"=>"acei_ace_inhibitor", "value"=>"Yes"}, {"code"=>"patcon_patient_consent", "value"=>"Yes"}, {"code"=>"role_completed", "value"=>"S"}, {"code"=>"claim_am
+ount", "value"=>"22.00"}, {"code"=>"rclin_recall_in", "value"=>"30"}, {"code"=>"rclin_recall_in_2", "value"=>"1826"}, {"code"=>"rclin_cvdf", "value"=>"30"}], "host_provider"=>{"name"=>"Chris Maud", "registration_no"=>"9091", "regist
+ration_body"=>"NZMC"}, "organisation"=>{"name"=>"DODSON MEDICAL"}}, "controller"=>"claim"}
+SQL (0.003000)  SELECT TOP 1 * FROM [organisations] WHERE (name like 'DODSON MEDICAL%')
+Organisation Columns (0.004000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'organisations'
+
+SQL (0.002000)  SELECT TOP 1 * FROM [providers] WHERE (organisation_id = 190 and ( registration_no = '9091' or registration_no = '09091' or registration_no = '009091' or registration_no = '0009091'))
+Provider Columns (0.002000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'providers'
+
+SQL (0.002000)  SELECT TOP 1 * FROM [providers] WHERE (organisation_id = 190 and ( registration_no = '59070' or registration_no = '059070' or registration_no = '0059070' or registration_no = '00059070'))
+SQL (0.003000)  SELECT TOP 1 * FROM [patients] WHERE (nhi_no = 'XXX0000' and date_of_birth = '19461203' and deleted = 0)
+SQL (0.004000)  SELECT TOP 1 * FROM [patients] WHERE (family_name = 'NHI' and given_names like 'XXX0000%' and date_of_birth = '19461203' and deleted = 0)
+Patient Columns (0.004000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'patients'
+
+Patient Create (0.002000)  INSERT INTO [patients] ([organisation_id], [ethnicity_3_id], [city], [internal_id], [quintile], [updated_at], [is_care_plus], [care_plus_condition_2], [ethnicity_2_id], [is_diabetec], [care_plus_condition_
+3], [care_plus_condition_4], [is_huhc_holder], [care_plus_criteria_id], [care_plus_criteria_4_id], [marker], [ethnicity_id], [care_plus_criteria_3_id], [suburb], [post_code], [nhi_no], [family_name], [dhb_id], [care_plus_criteria_2_
+id], [gender_id], [deleted], [street], [phone], [date_of_birth], [is_diabetic], [care_plus_condition], [comment], [given_names], [created_at]) VALUES(190, 99, NULL, NULL, 1, '20130614 13:52:13', 1, NULL, 99, NULL, NULL, NULL, 0, 5,
+NULL, NULL, 21, NULL, NULL, NULL, 'XXX0000', 'NHI', NULL, NULL, 'M', 0, NULL, NULL, '19461203', NULL, NULL, NULL, 'XXX0000', '20130614 13:52:13')
+SQL (0.001000)  SELECT @@IDENTITY AS Ident
+Programme Columns (0.002000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'programmes'
+
+SQL (0.001000)  SELECT TOP 1 * FROM [programmes] WHERE ([programmes].[code] = 'DIAB')
+SQL (0.001000)  SELECT TOP 1 * FROM [fee_schedules] WHERE ([fee_schedules].[code] = 'DIAFCP' AND [fee_schedules].[programme_id] = 3)
+FeeSchedule Columns (0.002000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'fee_schedules'
+
+SQL (0.002000)  SELECT TOP 1 * FROM [claims] WHERE ([claims].[patient_id] = 416185 AND [claims].[date_service] = '20130601' AND [claims].[programme_id] = 3 AND [claims].[invoice_no] = '0001' AND [claims].[organisation_id] = 190) ORD
+ER BY invoice_date desc
+Claim Columns (0.003000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'claims'
+
+SQL (0.003000)  SELECT TOP 1 * FROM [claims] WHERE (patient_id = 416185 and date_service = '20130601' and programme_id = 3 and organisation_id = 190 and claim_status_id < 8 and id <> 0) ORDER BY invoice_date desc
+Claim Create (0.002000)  INSERT INTO [claims] ([organisation_id], [clinical_information], [cplus_enrolled], [programme_id], [payment_run_id], [updated_at], [patient_id], [fee_schedule_id], [huhc_holder], [invoice_date], [date_lodged
+], [date_service], [amount], [host_provider_id], [cost_organisation_id], [invoice_no], [service_provider_id], [comment], [claim_status_id], [created_at]) VALUES(190, NULL, 1, 3, 0, '20130614 13:52:13', 416185, 3704, NULL, '20130601'
+, '20130614', '20130601', NULL, 699, 190, '0001', 707, NULL, 5, '20130614 13:52:13')
+SQL (0.000000)  SELECT @@IDENTITY AS Ident
+ClaimsData Columns (0.024000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'claims_data'
+
+SQL (0.010000)  SELECT TOP 1 * FROM [claims_data] WHERE ([claims_data].[id] = 264690)
+INFORMATION: claim/post 'formID' not found
+INFORMATION: claim/post 'prev_cvd_risk' not found
+INFORMATION: claim/post 'prev_cvd_risk_date' not found
+INFORMATION: claim/post 'NEW_fhdiab_family_history_type_2_diabetes' not found
+INFORMATION: claim/post 'dabp_date_blood_pressure' not found
+INFORMATION: claim/post 'cvdr_cvd_risk_text' not found
+INFORMATION: claim/post 'cvdrr_cvd_risk_raised' not found
+INFORMATION: claim/post 'notes_free_notes' not found
+INFORMATION: claim/post 'patcon_patient_consent' not found
+INFORMATION: claim/post 'role_completed' not found
+INFORMATION: claim/post 'claim_amount' not found
+INFORMATION: claim/post 'rclin_recall_in' not found
+INFORMATION: claim/post 'rclin_recall_in_2' not found
+INFORMATION: claim/post 'rclin_cvdf' not found
+ClaimsData Create (0.016000)  INSERT INTO [claims_data] ([abvho_abuse_present_at_home], [thia_thiazide], [vped_visit_patient_education], [cacxs_cervical_screening], [cocon_contraception_condom], [podref_podiatary_referral], [abinc_a
+buse_screen_incomplete], [alds_alcohol_drinks_per_session], [growre_growth_measure_referral], [fev1_forced_expiratory_volume], [fvcpred_fvc_predicted], [oorm_other_oral_medication], [codia_contraception_diaphragm], [podref_podiatary
+_referral2], [lifet_lifestyle_therapy], [preg_pregnant], [ecze_eczema], [smquit_smoking_quit_status], [hypoa_hypoglycaemic_attacks], [dbpp_diastolic_blood_pressure_previous], [tchdl_tc_hdl_ratio], [reas_reason], [resp_respiratory_il
+lnesses], [sdqin_sdq_interpretation], [a3lm_asthma_3rd_line_medication], [fibra_fibrate], [hba1c_hba1c_perage], [shoadv_shealth_advice], [oahm_other_anti_hypertensive_medication], [pcte_positive_changes_to_excercise], [trgres_trigge
+r_respiratory_infection], [pefr_peak_expiratory_flow_rate], [dcsc_drink_check_section_c], [comor2_co_morbidities_read_2], [statin_statin], [vishr_vision_hearing_referral], [ds05_date_service_05], [actlim_activity_limitations], [actp
+lan_action_plan], [retinopathy], [btwc3_barriers_to_work_code_3], [hdfu_history_diabetic_foot_ulcer], [feets_feet_sensation], [immvt_immunisation_vacc_today], [hayf_hay_fever], [sdqref2s_sdq_referral_2_status], [cabre_breast_health]
+, [sdqtcec_sqd_t_ece], [green_green_prescription], [smref_smoking_action_referral], [shotop_shealth_top_referral], [trghor_trigger_hormonal], [sdqtc_sdq_t_completed], [absex_abuse_sexual], [cadiab_diabetes_management], [dentres_dent
+al_referral_status], [ds10_date_service_10], [treat_treatment], [dcsa_drink_check_section_a], [tapuo_taxi_purpose_other], [egfr_glumeral_filtration], [hdl_hdl_cholesterol], [amgmt_under_active_mgmt], [cpet_care_plus_enrolment_type],
+ [advg_advice_info_given], [comor_co_morbidities_read], [fvc_forced_vital_capacity], [coiucd_contraception_iucd], [cond_condition], [yodd_year_of_diabetes_diagnosis], [btwc_barriers_to_work_code], [pfmeter_peak_flow_meter], [imm4ud_
+4y_immunisation_up_to_date], [insu_insulin], [mhex_mhealth_exit_reason], [warf_warfarin], [abtra_abuse_history_trauma], [sabause_short_acting_ba_usage], [mhswk_mhealth_contract_social_worker], [pedsrefd_peds_referral_date], [vhsr_vi
+sit_health_status_reviewed], [trig_triglyceride], [retwe_retinopathy_worst_eye], [immres_immunisation_referral_status], [mhth_mh_therapy], [nokgn_nok_given_names], [macwe_maculopathy_worst_eye], [shooth_shealth_other], [ptca_ptca_ca
+bg], [sdqhys_sdq_hyperactivity_score], [increase_gc_meds], [ds04_date_service_04], [growres_growth_measure_referral_status], [beta_beta_blocker], [ohyp_other_hypoglycaemic_medication], [infvac_influenza_vacc_given], [fhato_fh_atopy]
+, [growred_growth_measure_referral_date], [atfi_atrial_fibrillation], [nokce_nok_cell_phone], [sdqtds_sdq_total_difficulties_score], [alrc_alcohol_readiness_to_change], [abass_abuse_assessment], [nokph_nok_phone], [mhgad7_mhealth_ga
+d_7], [btwc4_barriers_to_work_code_4], [nokst_nok_street], [mhdx6_mhealth_diagnosis_6], [ds06_date_service_06], [denten_dental_enrolled], [renal_established_renal_disease], [pefrpb_pefr_post_bronchodilator], [pefrlow_pefr_lowest], [
+pefrppred_pefr_percentage_predicted], [prov_providers_name], [vcpr_visit_crisis_plan_reviewed], [pedsns_peds_non_significant_score], [acei_ace_inhibitor], [trgani_trigger_animals], [sinu_sinusitis], [medcon_medical_concordance], [gl
+d_genetic_lipid_disorder], [mhmoh_mhealth_contract_ministry_of_health], [mhdx4_mhealth_diagnosis_4], [dbp_diastolic_blood_pressure], [pefrvar_pefr_variability], [abmen_abuse_mental], [casmk_smoking], [sulp_sulphonylurea], [fev1ppred
+_fev1_percentage_predicted], [pedsss_peds_significant_score], [mhsty_mhealth_session_type], [cvdr_cvd_risk], [conl_contact_location], [ihd_heart_disease], [pedsrefs_peds_referral_status], [mhdx2_mhealth_diagnosis_2], [pvd_peripheral
+_vessel_disease], [vishrs_vision_hearing_referral_status], [angi_angina_ami], [slex_skin_lesion_excision], [pnrt2_pnap_referral_to_2], [retind_date_last_retinal_screening], [noksu_nok_city], [ics_inhaled_corticosteroid], [trgfdr_tri
+gger_food_drink], [slbt_skin_lesion_benign_type], [vrxr_visit_medication_review], [sdqref_sdq_referral], [sdqrefd_sdq_referral_date], [trgmold_trigger_mould_damp], [trgemo_trigger_emotions], [etcon_e_therapy_condition], [coora_contr
+aception_oral], [stihsv_sti_hsv_herpes], [trgdus_trigger_dust], [pedsin_peds_interpretation], [fvcppred_fvc_percentage_predicted], [hypv_hyperventilation], [codep_contraception_depo_provera], [como_co_morbidities], [coecp_contracept
+ion_ecp], [creat_serum_creatinine], [rhin_rhinitis], [sdqpbs_sdq_prosocial_behaviour_score], [fhcvd_family_history_early_cardiovascular_disease], [waist_waist_circumference], [pefrhig_pefr_highest], [mhmsd_mhealth_contract_ministry_
+of_social_dev], [ds11_date_service_11], [canex_nutrition_exercise], [exahos_exacarbation_hospital_admit], [abdel_abuse_delay_medical_advice], [glit_glitazone], [caohn_other_heath_need], [ds08_date_service_08], [refto_Referral_To], [
+nokfn_nok_family_name], [dentred_dental_referral_date], [mhk10_mhealth_kessler_10], [eyer_eye_referral_today], [smpy_smoking_pack_years], [smgumrx_smoking_gum_rx], [sbp_systolic_blood_pressure], [plla_previous_diabetic_lower_limb_am
+putation], [bmi_body_mass_index], [clop_clopidogrel], [sdqref2_sdq_referral_2], [cont_contact_type], [pedsref_peds_referral], [epdssc_epds_score], [sllo_skin_lesion_location], [copa_co_payment_amount], [id], [rtow_return_to_work], [
+alcs_alcohol_consumption], [gluc_fasting_glucose], [vishs_vision_hearing_status], [nosess_number_of_sessions], [pedsref2_peds_referral_2], [inhtec_inhaler_technique], [diabscm_diabetes_self_care_measure], [accd_acc_accident_date], [
+ldl_ldl_cholesterol], [casxh_sexual_health], [alus_alcohol_under_surveillance], [smoc_smoking_outcome], [demen_dementia], [stinsu_sti_nsu], [chqres_child_heath_q_referral_status], [nurref_nutritionist_referral], [vpgr_visit_patient_
+goals_reviewed], [hcra_hcheck_referring_agency], [alag_alcohol_advice_given], [caan_calcium_antagonist], [shopgt_shealth_pregnancy_test], [DIP_counter], [symday_symptoms_day], [bgsm_blood_glucose_self_monitoring], [vacl_visual_acuit
+y_left], [mhphq9_mhealth_phq_9], [weig_weight], [sdqrefs_sdq_referral_status], [growin_growth_measure_interpretation], [exaost_exacarbation_oral_steriod], [stigon_sti_gonorrhoea], [ds07_date_service_07], [alar_alcohol_at_risk], [lab
+a_long_acting_bronchodilator], [taoby_taxi_ordered_by], [reffn_referral_from_name], [pefrpbip_pefr_post_bronch_improve_per], [fev1fvcr_fev1_fvc_ratio], [metf_metformin], [mhapt_mhealth_appointment_type], [trgocc_trigger_occupational
+], [mets_diagnosed_metabolic_syndrome], [pctd_positive_changes_to_diet], [tapur_taxi_purpose], [pedsref2d_peds_referral_2_date], [prio_priority_level], [abvhi_abuse_changing_history], [hovi_home_visit], [ds09_date_service_09], [nokr
+el_nok_relationship], [btwc2_barriers_to_work_code_2], [slty_skin_lesion_type], [saba_short_acting_bronchodilator], [conr_condition_read], [ndxdiab_newly_dx_diabetes], [abcyf_abuse_ho_cyfs_engagement], [retini_retinal_screening_inte
+rval], [hoac_history_of_acute_coronary_syndrome], [hba1c_hba1c], [chqred_child_heath_q_referral_date], [trgasp_trigger_aspirin], [insu_init], [pefrpred_pefr_predicted], [heig_height], [fev1pred_fev1_predicted], [canut_nutrition], [s
+dqcps_sdq_conduct_problems_score], [cdfu_current_diabetic_foot_ulcer], [vacr_visual_acuity_right], [abgus_abuse_gastrourinary_sx], [provt_provider_type], [km_kilometeres], [omed_other_medication], [vishrd_vision_hearing_referral_dat
+e], [abcdr_abuse_changing_dr], [pedsref2s_peds_referral_2_status], [exaevi_exacarbation_emergency_visit], [gord_gastro_oesophageal_reflux], [ds01_date_service_01], [acc_acc_accident], [refda_date_of_referral], [cpdr_care_plus_disenr
+olment_reason], [tapos_taxi_position], [mhdx_mhealth_diagnosis], [vcpr_visit_care_plan_reviewed], [trgexe_trigger_exercise], [sbpp_systolic_blood_pressure_previous], [sdqess_sdq_emotional_symptoms_score], [abneg_abuse_neglect], [qol
+r_quality_of_life_rating], [stihpv_sti_hpv_warts], [sdqref2d_sdq_referral_2_date], [ds03_date_service_03], [stichl_sti_chlamydia], [nirt_nicotine_replacement_therapy], [chqin_child_heath_q_interpretation], [agea_age_of_asthma_diagno
+sis], [sdqpps_sdq_peer_problems_score], [tc_total_cholesterol], [smok_smoking_history], [smhou_smoking_household], [maosu_maori_support], [reftn_referral_to_name], [mhatt_mhealth_attendance_type], [camedi_medications], [dsma_dipstic
+k_test_for_microalbuminuria], [smready_smoking_readiness_quit], [icsuse_ics_usage], [pedsqv_peds_question_values], [dentent_dental_enrolled_today], [dentin_dental_interpretation], [dentde_dental_decay], [refto_referral_to_other], [d
+entre_dental_referral], [mhdx5_mhealth_diagnosis_5], [immred_immunisation_referral_date], [smothrx_smoking_other_rx], [supatt_support_person_attending], [albf_alcohol_binge_frequency], [sdqqv_sdq_question_values], [refts_referral_to
+_status], [dod_date_of_death], [mhost_mhealth_one_off_session_type], [mhaod_mhealth_contract_alcohol_other_drug], [cooth_contraception_other], [notes_notes], [chqre_child_heath_q_referral], [reftt_referral_to_type], [aspi_aspirin],
+[epds10_epds_self_harm], [mhdx3_mhealth_diagnosis_3], [refft_referral_from_type], [ohrf_other_criteria_for_high_risk_foot], [a2ra_a2_receptor_antagonist], [acr_urine_albumin_to_creatine_ratio], [cacvdr_cvd_risk], [noksu_nok_suburb],
+ [podr_podiatry_referral_today], [alfq_alcohol_frequency], [dcsb_drink_check_section_b], [immre_immunisation_referral], [stioth_sti_other], [diab_type_of_diabetes], [smpatrx_smoking_patch_rx], [nopga_number_of_partner_group_attendan
+ces], [abunc_abuse_uncorroborated_history], [symnig_symptoms_night], [pnrt_pnap_referral_to], [abphy_abuse_physical], [vono_voucher_no], [ollm_other_lipid_lowering_medication], [feetc_feet_circulation], [mhkde_mhealth_kessler_10_dec
+lined], [tia_stroke_tia], [acar_acarbose], [noga_number_of_group_attendances], [ds02_date_service_02], [apst_albumin_protein_stick_test], [trgcai_trigger_cold_air], [rfiskc_foot_risk_category]) VALUES(NULL, NULL, NULL, NULL, NULL, N
+ULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 80, 4.6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, N
+ULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2005, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+ NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Non diabetic nephr', NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', NULL
+, NULL, NULL, NULL, NULL, NULL, 75, NULL, NULL, NULL, 'Yes', NULL, NULL, NULL, 99.0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '20110701', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NUL
+L, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 130, NULL, 45, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 264690, NULL, NU
+LL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes',
+NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 68.0, NULL, NULL, NULL, NULL, 177, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+ NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 126, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Past', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NU
+LL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', NULL, NULL, NULL, NULL, 'Type 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, N
+ULL, NULL, NULL, NULL, NULL, NULL)
+Completed in 0.30600 (3 reqs/sec) | Rendering: 0.00000 (0%) | DB: 0.09400 (30%) | 200 OK [http://localhost/claim/lodge]
+
+
+Processing ClaimController#lodge (for 127.0.0.1 at 2013-06-14 13:52:14) [POST]
+  Session ID: 2784716480e85e09de8ce5af00b543d6
+  Parameters: {"action"=>"lodge", "post"=>{"patient"=>{"care_plus_criteria"=>"5", "quintile"=>"1", "is_care_plus"=>"1", "cplus_cplus_enrolled"=>"Yes", "ethnicity"=>"21", "is_huhc_holder"=>"0", "external_id"=>"X007642", "gender"=>"M"
+, "nhi_no"=>"XXX0000", "ethnicity_2"=>"99", "ethnicity_3"=>"99", "date_of_birth"=>"1946-12-03"}, "service_provider"=>{"name"=>"NURSE DICK", "registration_no"=>"059070", "registration_body"=>"NZNC"}, "claim"=>{"date_service"=>"2013-0
+6-01", "invoice_date"=>"2013-06-01", "invoice_no"=>"0001", "programme_code"=>"CVDR", "fee_schedule_code"=>"CVDCPNF"}, "elems"=>[{"code"=>"formID", "value"=>"cvdndiab31"}, {"code"=>"prev_cvd_risk", "value"=>"21"}, {"code"=>"prev_cvd_
+risk_date", "value"=>"27/11/2012"}, {"code"=>"smok_smoking_history", "value"=>"Past"}, {"code"=>"NEW_fhdiab_family_history_type_2_diabetes", "value"=>"Yes"}, {"code"=>"diab_type_of_diabetes", "value"=>"Type 2"}, {"code"=>"sbpp_systo
+lic_blood_pressure_previous", "value"=>"126"}, {"code"=>"dbpp_diastolic_blood_pressure_previous", "value"=>"80"}, {"code"=>"sbp_systolic_blood_pressure", "value"=>"130"}, {"code"=>"dbp_diastolic_blood_pressure", "value"=>"75"}, {"co
+de"=>"dabp_date_blood_pressure", "value"=>"13-12-2012"}, {"code"=>"heig_height", "value"=>"177"}, {"code"=>"bmi_body_mass_index", "value"=>"45"}, {"code"=>"weig_weight", "value"=>"140"}, {"code"=>"tchdl_tc_hdl_ratio", "value"=>"4.6"
+}, {"code"=>"hba1c_hba1c", "value"=>"68"}, {"code"=>"renal_established_renal_disease", "value"=>"Non diabetic nephropathy"}, {"code"=>"yodd_year_of_diabetes_diagnosis", "value"=>"2005"}, {"code"=>"retind_date_last_retinal_screening"
+, "value"=>"2011"}, {"code"=>"podr_podiatry_referral_today", "value"=>"Yes"}, {"code"=>"cvdr_cvd_risk_text", "value"=>"Clinically > 20%"}, {"code"=>"cvdr_cvd_risk", "value"=>"99"}, {"code"=>"cvdrr_cvd_risk_raised", "value"=>"99"}, {
+"code"=>"notes_free_notes", "value"=>"declines weight today - -\r\nmeter downloaded - dec readings show no levels over 12 - this is good compared to nov with readings of 16-18-\r\nwill continue to try and controll his diet - \r\nadd
+ metformin 1 midday - cannot tolerate 2 tabs together -\r\n see in 1/12 for review-\r\n plse check previous pod. referral - present clinic unable to continue his care"}, {"code"=>"sulp_sulphonylurea", "value"=>"Yes"}, {"code"=>"metf
+_metformin", "value"=>"Yes"}, {"code"=>"statin_statin", "value"=>"Yes"}, {"code"=>"acei_ace_inhibitor", "value"=>"Yes"}, {"code"=>"patcon_patient_consent", "value"=>"Yes"}, {"code"=>"role_completed", "value"=>"S"}, {"code"=>"claim_a
+mount", "value"=>"22.00"}, {"code"=>"rclin_recall_in", "value"=>"30"}, {"code"=>"rclin_recall_in_2", "value"=>"1826"}, {"code"=>"rclin_cvdf", "value"=>"30"}], "host_provider"=>{"name"=>"Chris Maud", "registration_no"=>"9091", "regis
+tration_body"=>"NZMC"}, "organisation"=>{"name"=>"DODSON MEDICAL"}}, "controller"=>"claim"}
+SQL (0.002000)  SELECT TOP 1 * FROM [organisations] WHERE (name like 'DODSON MEDICAL%')
+Organisation Columns (0.004000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'organisations'
+
+SQL (0.001000)  SELECT TOP 1 * FROM [providers] WHERE (organisation_id = 190 and ( registration_no = '9091' or registration_no = '09091' or registration_no = '009091' or registration_no = '0009091'))
+Provider Columns (0.002000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'providers'
+
+SQL (0.000000)  SELECT TOP 1 * FROM [providers] WHERE (organisation_id = 190 and ( registration_no = '59070' or registration_no = '059070' or registration_no = '0059070' or registration_no = '00059070'))
+SQL (0.001000)  SELECT TOP 1 * FROM [patients] WHERE (nhi_no = 'XXX0000' and date_of_birth = '19461203' and deleted = 0)
+Patient Columns (0.003000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'patients'
+
+Programme Columns (0.003000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'programmes'
+
+SQL (0.001000)  SELECT TOP 1 * FROM [programmes] WHERE ([programmes].[code] = 'CVDR')
+SQL (0.002000)  SELECT TOP 1 * FROM [fee_schedules] WHERE ([fee_schedules].[code] = 'CVDCPNF' AND [fee_schedules].[programme_id] = 2)
+FeeSchedule Columns (0.003000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'fee_schedules'
+
+SQL (0.002000)  SELECT TOP 1 * FROM [claims] WHERE ([claims].[patient_id] = 416185 AND [claims].[date_service] = '20130601' AND [claims].[programme_id] = 2 AND [claims].[invoice_no] = '0001' AND [claims].[organisation_id] = 190) ORD
+ER BY invoice_date desc
+Claim Columns (0.002000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'claims'
+
+SQL (0.004000)  SELECT TOP 1 * FROM [claims] WHERE (patient_id = 416185 and date_service = '20130601' and programme_id = 2 and organisation_id = 190 and claim_status_id < 8 and id <> 0) ORDER BY invoice_date desc
+Claim Create (0.002000)  INSERT INTO [claims] ([organisation_id], [clinical_information], [cplus_enrolled], [programme_id], [payment_run_id], [updated_at], [patient_id], [fee_schedule_id], [huhc_holder], [invoice_date], [date_lodged
+], [date_service], [amount], [host_provider_id], [cost_organisation_id], [invoice_no], [service_provider_id], [comment], [claim_status_id], [created_at]) VALUES(190, NULL, 1, 2, 0, '20130614 13:52:14', 416185, 3711, NULL, '20130601'
+, '20130614', '20130601', 0.0, 699, 190, '0001', 707, NULL, 5, '20130614 13:52:14')
+SQL (0.000000)  SELECT @@IDENTITY AS Ident
+ClaimsData Columns (0.061000)
+ SELECT
+ cols.COLUMN_NAME as ColName,
+ cols.COLUMN_DEFAULT as DefaultValue,
+ cols.NUMERIC_SCALE as numeric_scale,
+ cols.NUMERIC_PRECISION as numeric_precision,
+ cols.DATA_TYPE as ColType,
+ cols.IS_NULLABLE As IsNullable,
+ COL_LENGTH(cols.TABLE_NAME, cols.COLUMN_NAME) as Length,
+ COLUMNPROPERTY(OBJECT_ID(cols.TABLE_NAME), cols.COLUMN_NAME, 'IsIdentity') as IsIdentity,
+ cols.NUMERIC_SCALE as Scale
+ FROM INFORMATION_SCHEMA.COLUMNS cols
+ WHERE cols.TABLE_NAME = 'claims_data'
+
+SQL (0.009000)  SELECT TOP 1 * FROM [claims_data] WHERE ([claims_data].[id] = 264691)
+INFORMATION: claim/post 'formID' not found
+INFORMATION: claim/post 'prev_cvd_risk' not found
+INFORMATION: claim/post 'prev_cvd_risk_date' not found
+INFORMATION: claim/post 'NEW_fhdiab_family_history_type_2_diabetes' not found
+INFORMATION: claim/post 'dabp_date_blood_pressure' not found
+INFORMATION: claim/post 'cvdr_cvd_risk_text' not found
+INFORMATION: claim/post 'cvdrr_cvd_risk_raised' not found
+INFORMATION: claim/post 'notes_free_notes' not found
+INFORMATION: claim/post 'patcon_patient_consent' not found
+INFORMATION: claim/post 'role_completed' not found
+INFORMATION: claim/post 'claim_amount' not found
+INFORMATION: claim/post 'rclin_recall_in' not found
+INFORMATION: claim/post 'rclin_recall_in_2' not found
+INFORMATION: claim/post 'rclin_cvdf' not found

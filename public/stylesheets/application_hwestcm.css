@@ -1,0 +1,333 @@
+body {
+  font-family: Arial,Helvetica,Sans-serif;
+	font-size: 9pt;
+	color:#333333;
+	text-decoration:none;
+  background-color: Khaki;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 18pt;
+	font-weight: normal;
+	color: #2B4691;
+}
+
+h2 {
+	font-size: 12pt;
+	font-weight: bold;
+	color: #2B4691;
+  margin: 0 0 2pt 0;
+}
+h3 {
+	font-size: 10pt;
+	font-weight: bold;
+	color: #111111;
+  margin: 2pt 0 2pt 2pt;
+}
+
+h4 {
+	margin: 0;
+	font-size: 9pt;
+	padding: 2pt 0 2pt 0;
+}
+
+h5 {
+	margin: 0;
+	font-size: 8pt;
+	padding: 2pt 0 2pt 0;
+}
+
+a, a:visited {
+	color:blue;
+}
+
+li {
+	font-size: 9pt;
+	color:#333333
+}	
+
+div#header {
+  background-color: maroon;
+  margin-left: 100pt;  
+  border: 1pt white solid;
+  padding: 1pt 0 1pt 8pt;
+  font-family: Arial,Helvetica,Sans-serif;
+  font-size: 10pt;
+  font-weight: bold;  
+}
+
+div#nav {
+  width:  100pt;
+  height: 400pt;
+  float: left;
+}
+
+div#nav ul {
+  background-color: white;
+  list-style-type: none;
+  font-family: Arial,Helvetica,Sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;  
+}
+
+div#nav ul.blue {
+  background-color: #4B9FCD;
+}
+
+
+div#nav ul.green {
+  background-color: #4A611C;
+}
+
+div#nav ul.red {
+  background-color: #7B1E26;
+}  
+  
+div#nav ul li {
+  padding: 2pt 1pt 1pt 6pt;
+  font-size:  9pt;
+  border: 1pt white solid;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+
+div#nav ul li.blue {
+  background-color: #4B9FCD;
+}
+
+
+div#nav ul li.green {
+  background-color: #4A611C;
+}
+
+div#nav ul li.red {
+  background-color: #7B1E26;
+}
+
+
+div#nav li a {
+  font-size:  9pt;
+  color:white;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+div#nav a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+
+div#nav ul ul {
+  list-style-position: inside;  
+  list-style-type: square;
+  margin: 0;
+  padding: 0;
+
+}  
+  
+div#nav ul.blue ul li {
+  color: #4B9FCD;
+  background-color: #E4F1F8;
+}
+
+div#nav ul.blue ul li a {
+  color: #4B9FCD;
+  font-weight:normal;
+}
+
+div#nav ul.green ul li {
+  color: #4A611C;
+  background-color: #D9DDCF;
+}
+
+div#nav ul.green ul li a {
+  color: #4A611C;
+  font-weight:normal;
+}
+
+div#nav ul.red ul li {
+  color: #7B1E26;
+  background-color: #EBDDDF;
+}
+
+div#nav ul.red ul li a {
+  color: #7B1E26;
+  font-weight:normal;
+}
+
+
+
+
+div#body {
+  margin-left: 100pt;
+  padding: 0 0 0 8pt;
+  
+}
+
+table.form {
+	width: 98%;
+	background-color: #E4F1F8;
+	border-collapse: collapse;  
+}
+
+table.form td {
+  vertical-align: top;
+  color: black;
+	border: 2pt white solid;
+	padding: 2pt;
+	margin: 0;	
+}
+
+table.form td label {
+	color: #2B4691;
+}
+
+
+
+table.list {
+	width: 98%;
+	border-collapse: collapse;  
+}
+
+table.list th {
+  color: black;
+  background-color: #4B9FCD;
+  text-align: left; 
+  padding-left: 2pt; 
+  border: 2pt white solid;
+}
+
+
+table.list th.count {
+  text-align: right; 
+  padding-right: 2pt; 
+}
+
+table.list tr {
+  background-color: #E4F1F8;
+}  
+
+table.list tr.odd {
+  background-color: #F1F9FC;
+}  
+
+table.list td {
+  border: 1pt white solid;
+  padding-left: 2pt; 
+}
+
+table.list td.count {
+  padding-right: 2pt; 
+  text-align: right;
+}
+
+
+table.report th {
+  font-size:   10pt;
+  text-align: left;
+  font-weight: bold;
+  padding-left: 4px;
+  border: black solid 1pt;
+  border-width: 0 0 1pt 0;
+}  
+
+table.report {
+    border: black solid 1pt;
+	width: 440pt;
+	xwidth: 317pt;
+	padding: 0;
+	padding: 2pt;
+	margin: 0;	
+}
+
+table.report th.count {
+  text-align: right;
+  padding-right: 4px;
+}  
+
+
+table.report td {
+  font-size:   12px;
+  padding: 2px;
+  zborder: black dotted 1pt;
+  border-width: 0 0 1pt 0;
+}
+
+table.report td.even {
+  font-size:   12px;
+  padding: 2px;
+  border: black dotted 1pt;
+  border-width: 0 0 1pt 0;
+}
+
+table.report td.count {
+  text-align: right;
+  padding-right: 4px;
+}
+
+
+table.chart {
+  border: black solid 1pt;
+}  
+
+table.chart th {
+  font-size:   10pt;
+  text-align: left;
+  font-weight: bold;
+  padding-left: 4px;
+}  
+
+table.chart th.count {
+  text-align: right;
+  padding-right: 4px;
+}  
+
+table.chart td {
+  font-size:   12px;
+  padding: 2px;
+}
+
+table.chart td.count {
+  text-align: right;
+  padding-right: 4px;
+}
+
+
+table.chart td.perage {
+  font-size: 10px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+table.chart td.bar {
+  font-size:   13px;
+  border: black solid 2px;
+  border-width: 0px 0px 0px 2px;
+}
+  
+table.chart div.bar {
+  background-color: slateblue;
+  border: black solid 1px;
+  border-width: 1px 1px 1px 1px;
+}
+
+
+div.onprintonly {
+  display: none;
+}
+
+select.small,input.small {
+   font-size:  8pt;
+}
+
+select.large,input.large {
+   font-size:  10pt;
+   font-weight: bold;
+}

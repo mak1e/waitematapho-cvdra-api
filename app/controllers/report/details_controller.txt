@@ -1,0 +1,9 @@
+select o.id organisation_id, o.name organisation_name,o.residential_suburb organisation_suburb,
+       p.family_name, p.given_names, p.nhi_no, min(c.invoice_date) date_entry,
+          max(c.invoice_date) last_visit, sum(c.amount)
+from claims c 
+  join organisations o on o.id = c.organisation_id
+  left join patients p on p.id = c.patient_id
+where programme_id = 8
+group by o.id, o.name,o.residential_suburb,p.family_name,p.given_names,p.nhi_no
+order by o.name,min(c.invoice_date)

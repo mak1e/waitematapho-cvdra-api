@@ -1,0 +1,99 @@
+{
+<% 
+
+if @nhi 
+  
+  n = 0
+  re = Regexp.union("NHI", "cvdr_cvd_risk", "serviceDate", "practiceName", "ediAccount")
+  @nhi.each do |r|
+  i = 0
+    #next
+    r.each do |c|
+		next if c =~ re # is equals to ==> c.match(re)
+	  
+		if (c =~ /^[-+]?[0-9]*\.?[0-9]+$/) 
+	
+			%>
+		"nhi" : "<%=h params[:nhi] %>",
+		"code" : "Y" <%
+	  	next
+	 
+		case i
+		when 0
+			%>
+		"nhi" : "<%=h c.to_s %>",<%
+		when 1 
+			%>
+		"dateLastEnrolled" : "<%=h c.to_s %>",<%
+		when 2 
+			%>
+		"practiceName" : "<%=h c.to_s %>",<%
+		when 3 
+			%>
+		"ediAccount" : "<%=h c.to_s %>"<%
+		else
+	  		next
+		end # case
+
+	  	end # if (c)
+		
+    i += 1
+    n += 1
+    end # r.each
+  end # @nhi.each
+
+###############################
+# BEGIN code=N 
+  if n == 0
+  
+  @nhin.each do |r|
+  i = 0
+    #next
+    r.each do |c|
+		next if c =~ re # is equals to ==> c.match(re)
+	  
+		case i
+		when 0
+			%>
+		"nhi" : "<%=h c.to_s %>",
+		"code" : "N", <%
+		when 1 
+			%>
+		"dateLastEnrolled" : "<%=h c.to_s %>",<%
+		when 2 
+			%>
+		"practiceName" : "<%=h c.to_s %>",<%
+		when 3 
+			%>
+		"ediAccount" : "<%=h c.to_s %>"<%
+		else
+	  		next
+		end # case
+	 
+    i += 1
+    n += 1
+    end # r.each
+  end # @nhi.each
+  
+  end # if
+#
+##############################
+
+
+###############################
+# BEGIN code=U 
+  if n == 0
+  
+	  @nhiu.each do |r| %>
+		"nhi" : "<%=h params[:nhi] %>",
+		"code" : "U" <%
+	  end # @nhiu.each
+  
+  end # if
+#
+##############################
+
+
+end # if @nhi
+%>
+}

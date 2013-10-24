@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+</script>
+
+<script type="text/javascript"> 
+function CvdSummary(nhi_no) {
+    // alert('return sent');
+    $.ajax({
+            type: "POST",
+            url: "https://dcserver.harbourhealth.org.nz/waitematapho/cvdra/nhi",
+            data: {
+            	nhi: nhi_no,
+            	access_token: "lSEOasafriYQFtpizybdjDJbrMZyoAcc9dNh0u6PPsadGpqy",
+            	commit: "true"
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert(
+					"nhi: "+ data["nhi"] +",\n"
+					+"code: "+ data["code"] +",\n"
+					+"dateLastEnrolled: "+ data["dateLastEnrolled"] +",\n"
+					+"practiceName: "+ data["practiceName"] +",\n"
+					+"ediAccount: "+ data["ediAccount"] +"\n"
+				); //echo what the server sent back...
+                //return data; 
+			} 
+	}); 
+}
+
+//CvdSummary("BXY8616");
+
+</script>
+</head>
+
+<body>
+
+
+nhi: <input type="text" id="nhi" name="nhi"><input type="button" value="Query NHI" onclick="javascript:CvdSummary(document.getElementById('nhi').value)">
+
+
+</body>
+</html>

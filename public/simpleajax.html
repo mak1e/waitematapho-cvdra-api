@@ -1,0 +1,42 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="application/javascript"> 
+function CvdSummary(nhi_no) {
+    // alert("return sent");
+    $.ajax({
+            type: "POST",
+            url: "https://dcserver.harbourhealth.org.nz/waitematapho/cvdra/nhi",
+            data: {
+            	nhi: nhi_no,
+            	access_token: "lSEOasafriYQFtpizybdjDJbrMZyoAcc9dNh0u6PPsadGpqy",
+            	commit: "true"
+            },
+            dataType: 'json'
+            //success: function (data) {
+                //msg = nhi_no + ": " + data["code"];
+				//alert(msg); //echo what the server sent back...
+				//document.write(msg + "\n<br />");
+                //return data; 
+			//} 
+	}); 
+}
+
+//console.log(CvdSummary());
+
+CvdSummary("xxx1234");
+CvdSummary("AQL2552");
+CvdSummary("TFP3459");
+
+CvdSummary("RMH9152"); 
+CvdSummary("AVA0299");
+
+/*
+CvdSummary("NDT9010"); 
+CvdSummary("BTS8372"); 
+CvdSummary("EJN2470"); 
+CvdSummary("ATQ3791"); 
+CvdSummary("FPW9431"); 
+CvdSummary("HPC0697"); 
+*/
+
+
+</script>

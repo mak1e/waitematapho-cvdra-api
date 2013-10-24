@@ -1,0 +1,91 @@
+class Linktech < ActiveRecord::Base
+  set_table_name 'location'
+
+  establish_connection "linktech_#{RAILS_ENV}"
+ 
+ 
+ # Linktech.connection.select_all('select * from location')
+ # ActiveRecord::Base.configurations
+ # Linktech.connection.native_database_types
+ # Linktech.connection.execute_immediate
+ # a=Linktech.connection.execute('select * from area')
+ # //result_set=Linktech.connection.raw_connection.execute_immediate('select * from area')
+ # row=a.fetch (while ! nil)/ each etc ... 
+ 
+# def find_by_sql(sql)
+#        connection.select_all(sanitize_sql(sql), "#{name} Load").collect! { |record| instantiate(record) }
+# end
+#
+#def sanitize_sql_array(ary)
+#2037:           statement, *values = ary
+#2038:           if values.first.is_a?(Hash) and statement =~ /:\w+/
+#2039:             replace_named_bind_variables(statement, values.first)
+#2040:           elsif statement.include?('?')
+#2041:             replace_bind_variables(statement, values)
+#2042:           else
+#2043:             statement % values.collect { |value| connection.quote_string(value.to_s) }
+#2044:           end
+#2045:         end
+#
+#
+#
+ def Linktech.my_sanitize_sql(condition)
+     sanitize_sql_for_conditions(condition)
+ end
+ 
+ # This is a work around for 
+ def Linktech.my_select_all(condition)
+    Linktech.connection.select_all(Linktech.my_sanitize_sql(condition))
+ end
+ 
+ def Linktech.payment_summary()
+   sql = 
+SELECT p.praccode cbf_ident, p.name, 
+  c.cap_mth, 
+  f.ded_mth,
+  c.under6_mth,
+  c.vcla_mth,
+  c.cplus_mth,
+  c.sia_mth,
+  c.hp_mth,
+  
+  c.funded_pts,
+  c.huhc_pts,
+  c.under6_pts,
+  c.cplus_eligable,
+  c.cplus_residual,
+  c.cplus_enrolled,
+  c.maori_pi_pts,
+  c.high_needs_pts
+FROM PRACTICE p 
+ LEFT JOIN Z_FFS_SUMMARY_PRAC f on f.ffsdatestamp = '2011-05-15'  and f.praccode = p.praccode
+ LEFT JOIN Z_CBF_SUMMARY_PRAC c on c.ackdatestamp = '2011-04-01'  and c.praccode = p.praccode
+WHERE ( f.ded_mth is not null OR c.cap_mth is not null)
+UNION /* Use a UNION to stop the "order by" clause giving - exception with string truncation/arithmetic overflow */
+SELECT p.praccode, p.name, 
+  cast(0 as NUMERIC(12,2)) cap_mth, 
+  cast(0 as NUMERIC(12,2)) ded_mth,
+  cast(0 as NUMERIC(12,2)) under6_mth,
+  cast(0 as NUMERIC(12,2)) vcla_mth,
+  cast(0 as NUMERIC(12,2)) cplus_mth,
+  cast(0 as NUMERIC(12,2)) sia_mth,
+  cast(0 as NUMERIC(12,2)) hp_mth,
+  
+  cast(0 as INTEGER) funded_pts,
+  cast(0 as INTEGER) huhc_pts,
+  cast(0 as INTEGER) under6_pts,
+  cast(0 as NUMERIC(12,2)) cplus_eligable,
+  cast(0 as NUMERIC(12,2)) cplus_residual,
+  cast(0 as INTEGER) cplus_enrolled,
+  cast(0 as INTEGER) maori_pi_pts,
+  cast(0 as INTEGER) high_needs_pts
+FROM PRACTICE p 
+WHERE p.praccode = 'ZZZZ'
+ORDER BY 1
+
+   
+ end
+ 
+
+ 
+end

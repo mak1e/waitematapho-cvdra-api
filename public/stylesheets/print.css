@@ -1,0 +1,59 @@
+body {
+ background-color: white;
+}
+
+#layoutRight {
+ display: none;
+}
+
+#navigationBlock {
+ display: none;
+}
+
+a.noprint {
+  display: none;
+}
+a:link {
+text-decoration:none;
+}
+a:visited {
+text-decoration:none;
+}
+
+div.noprint {
+  display: none;
+}
+
+br.pagebreak  {
+  page-break-after: always;
+}
+
+hr.pagebreak  {
+  page-break-after: always;
+}
+
+div.onprintonly {
+  display: block;
+}
+
+div.pagebreak  {
+  page-break-after: always;
+}
+
+div#nav {
+  display: none;
+}
+
+div#header {
+  display: none;
+}
+
+div#body {
+  margin-left: 0;
+  padding: 0 0 0 8pt;
+}
+
+
+pre.noprint {
+  display: none;
+}
